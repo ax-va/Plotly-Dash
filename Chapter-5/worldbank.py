@@ -15,8 +15,7 @@ indicators = {
 
 # get country name and ISO id for mapping on choropleth
 countries = wb.get_countries()
-countries["capitalCity"].replace({"": None}, inplace=True)
-countries.dropna(subset=["capitalCity"], inplace=True)
+countries["capitalCity"] = countries["capitalCity"].replace({"": None}).dropna()
 countries = countries[["name", "iso3c"]]
 countries = countries[countries["name"] != "Kosovo"]
 countries = countries.rename(columns={"name": "country"})
